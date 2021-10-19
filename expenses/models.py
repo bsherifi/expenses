@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Expense(models.Model):
+    user = models.ForeignKey(User, default="", on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     body = models.TextField()
     amount = models.IntegerField()
