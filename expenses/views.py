@@ -1,18 +1,23 @@
-from rest_framework import generics, permissions
+from django.contrib.auth import get_user_model
+from rest_framework import generics, viewsets
+from rest_framework.permissions import IsAuthenticated
 from .models import Expense
-from .serializers import ExpenseSerializer
+from .serializers import ExpenseSerializer, UserSerializer
 from .permissions import IsOwner
 
 
-class ListExpense(generics.ListCreateAPIView):
+class ExpenseViewSet(viewsets.ModelViewSet):
     serializer_class = ExpenseSerializer
 
     def get_queryset(self):
-        user = self.request.user
-        return Expense.objects.filter(user=user)
+        return Expense.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
-class DetailExpense(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsOwner,)
-    queryset = Expense.objects.all()
-    serializer_class = ExpenseSerializer
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = get_user_model().objects.all()
+    serializer_class = UserSerializer
+
+    permission_classes = [IsOwner]

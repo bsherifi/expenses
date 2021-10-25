@@ -1,9 +1,11 @@
 # expenses/urls.py
 
 from django.urls import path
-from .views import ListExpense, DetailExpense
+from .views import UserViewSet, ExpenseViewSet
+from rest_framework.routers import SimpleRouter
 
-urlpatterns = [
-    path('<int:pk>/', DetailExpense.as_view()),
-    path('', ListExpense.as_view()),
-]
+router = SimpleRouter()
+router.register('users', UserViewSet, basename='users')
+router.register('', ExpenseViewSet, basename='expenses')
+
+urlpatterns = router.urls
