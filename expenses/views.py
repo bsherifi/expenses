@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
-from rest_framework import generics, viewsets
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import viewsets
 from .models import Expense
 from .serializers import ExpenseSerializer, UserSerializer
 from .permissions import IsOwner
