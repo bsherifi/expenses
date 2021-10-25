@@ -1,6 +1,4 @@
 # expenses/urls.py
-
-from django.urls import path
 from .views import UserViewSet, ExpenseViewSet
 from rest_framework.routers import SimpleRouter
 
