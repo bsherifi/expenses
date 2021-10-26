@@ -1,9 +1,9 @@
 # expenses/views.py
-from django.contrib.auth import get_user_model
 from rest_framework import viewsets
+from django.contrib.auth.models import User
 from .models import Expense
+from .permissions import IsSuperUser, IsOwnUser, NotAllowed
 from .serializers import ExpenseSerializer, UserSerializer
-from .permissions import IsOwner
 
 
 class ExpenseViewSet(viewsets.ModelViewSet):
@@ -17,7 +17,15 @@ class ExpenseViewSet(viewsets.ModelViewSet):
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = get_user_model().objects.all()
+    queryset = User.objects.all()
     serializer_class = UserSerializer
 
-    permission_classes = [IsOwner]
+    def get_permissions(self):
+        if self.action == 'list':
+            self.permission_classes = [IsSuperUser, ]
+        elif self.action == 'retrieve':
+            self.permission_classes = [IsOwnUser, ]
+        elif self.action == 'create':
+            self.permission_classes = [NotAllowed, ]
+
+        return super(self.__class__, self).get_permissions()
