@@ -9,6 +9,10 @@ djangorestframework = "*"
 django-cors-headers = "*"
 dj-rest-auth = "*"
 django-allauth = "*"
+l = "*"
+pyyaml = "*"
+uritemplate = "*"
+drf-yasg = "*"
 
 [dev-packages]
 
