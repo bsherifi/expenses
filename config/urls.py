@@ -33,6 +33,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    path('frontend/', include('frontend.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('expenses.urls')),
     path('api-auth/', include('rest_framework.urls')),
