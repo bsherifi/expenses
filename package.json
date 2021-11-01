@@ -1,0 +1,35 @@
+{
+  "name": "expenses",
+  "version": "1.0.0",
+  "description": "A Django REST API that calculates &amp; categorizes your personal expenses.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development ./frontend/src/index.js --output-path ./frontend/static/frontend/",
+    "build": "webpack --mode production ./frontend/src/index.js --output-path ./frontend/static/frontend/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bsherifi/expenses.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bsherifi/expenses/issues"
+  },
+  "homepage": "https://github.com/bsherifi/expenses#readme",
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "webpack": "^5.61.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
